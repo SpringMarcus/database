@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- pom - project object entity -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- The modelVersion element sets what version of the POM model
+    you are using. Use the one matching the Maven version you are using.
+    Version 4.0.0 matches Maven version 2 and 3. -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- group or organization that this project belongs to
+    often inverted domain name -->
+    <groupId>com.marcuschiu</groupId>
+    <!-- name given to this project library -->
+    <artifactId>SpringBasicExample</artifactId>
+    <!-- version name of this project -->
+    <version>1.0-SNAPSHOT</version>
+
+    <!-- how this project should be packaged jar(default) or war -->
+    <!-- name of jar or war file will be artifact id + version -->
+    <!-- needed so Tomcat can load the artifact exploded -->
+    <packaging>war</packaging>
+
+    <name>Spring Basic Example</name>
+    <url>http://maven.apache.org</url>
+
+    <!-- variables used in dependencies below -->
+    <properties>
+        <springframework.version>4.0.6.RELEASE</springframework.version>
+        <org.springframework-security-version>4.0.2.RELEASE</org.springframework-security-version>
+    </properties>
+
+    <dependencies>
+        <!-- this is where you get dependencies -->
+        <!-- https://mvnrepository.com/ -->
+
+        <!-- Example Dependency
+        <dependency>
+
+           //The group/organization this belongs to
+           <groupId>mysql</groupId>
+
+           //The library that's required
+           <artifactId>mysql-connector-java</artifactId>
+
+           //The version of the requested library
+           <version>5.1.34</version>
+
+           // scope
+           // 'compile' by default - which is ready at compile time
+           // 'provided' - will be provided at runtime by a container running the code
+           // 'test' - used for compiling tests, but not required for building/running code
+           // 'runtime' - This scope indicates that the dependency is not required for compilation,
+                          but is for execution. It is in the runtime and test classpaths, but not
+                          the compile classpath.
+           // 'system' - This scope is similar to provided except that you have to provide the JAR
+                         which contains it explicitly. The artifact is always available and is not
+                         looked up in a repository. import (only available in Maven 2.0.9 or later):
+                         This scope is only used on a dependency of type pom in the section.
+                         It indicates that the specified POM should be replaced with the dependencies
+                         in that POM's section. Since they are replaced, dependencies with a scope of
+                         import do not actually participate in limiting the transitivity of a dependency.
+
+           <scope>runtime</scope>
+
+       </dependency>
+       -->
+
+        <!-- SPRING - START -->
+            <!-- Spring Core - START -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+            <!-- Spring Core - END -->
+
+            <!-- Spring Security - START -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-core</artifactId>
+                <version>${org.springframework-security-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-web</artifactId>
+                <version>${org.springframework-security-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-config</artifactId>
+                <version>${org.springframework-security-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-taglibs</artifactId>
+                <version>${org.springframework-security-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-cas</artifactId>
+                <version>${org.springframework-security-version}</version>
+            </dependency>
+            <!-- Spring Security - START -->
+        <!-- SPRING - END -->
+
+        <!-- Servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <!-- JSP -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <!-- JSTL -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!-- needed for CommonsMultipartResolver bean -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.2</version>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                    </configuration>
+                </plugin>
+
+                <!-- maven-war-plugin allows us to use full annotation a_configuration -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.4</version>
+                    <configuration>
+                        <!-- configures plugin to build war package -->
+                        <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                        <warName>SpringBasicExample</warName>
+                        <failOnMissingWebXml>false</failOnMissingWebXml><!-- because we replace web.xml with java AppInitializer -->
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <finalName>SpringBasicExample</finalName>
+    </build>
+</project>
