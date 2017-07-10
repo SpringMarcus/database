@@ -1,4 +1,4 @@
-package com.marcuschiu.config;
+package com.marcuschiu.config.controller;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +28,8 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages = "com.marcuschiu.controller")
 //@Import() not needed for now
 public class MVCConfig extends WebMvcConfigurationSupport {
+
+    private String messageSourcePropertiesPath = "properties/language/en_messages";
 
     ///////////////
     // OVERRIDES //
@@ -103,7 +105,7 @@ public class MVCConfig extends WebMvcConfigurationSupport {
 
         //Spring will search for file named 'en_messages.properties' in app class path
         // ~/src/main/resources/en_messages.properties
-        messageSource.setBasename("properties/language/en_messages");
+        messageSource.setBasename(messageSourcePropertiesPath);
 
         //return as MessageSource
         return messageSource;

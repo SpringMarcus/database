@@ -1,0 +1,27 @@
+CREATE TABLE EMPLOYEE
+(
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    joining_date DATE NOT NULL,
+    salary DOUBLE NOT NULL,
+    ssn VARCHAR(30) NOT NULL,
+    first VARCHAR(50),
+    middle VARCHAR(50),
+    last VARCHAR(50) DEFAULT 'Christ',
+    text VARCHAR(100) NOT NULL,
+    birth_date DATE NOT NULL
+);
+CREATE UNIQUE INDEX EMPLOYEE_ssn_uindex ON EMPLOYEE (ssn);
+CREATE TABLE PHONE
+(
+    phone_id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    number VARCHAR(255),
+    employee_id INT(11)
+);
+CREATE UNIQUE INDEX PHONE_phone_id_uindex ON PHONE (phone_id);
+CREATE TABLE POST
+(
+    post_id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    text VARCHAR(100) DEFAULT '' NOT NULL
+);
+CREATE UNIQUE INDEX POST_post_id_uindex ON POST (post_id);

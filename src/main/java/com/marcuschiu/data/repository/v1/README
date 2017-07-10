@@ -1,0 +1,67 @@
+1. What is the difference between Hibernate and JPA?
+
+JPA - Java Persistence API is a Java specification for accessing, persisting,
+      nd managing data Java class/objects and relational database
+    - only specification, no implementation
+    - JPA is similar to this interface
+        public interface JPA {
+
+            public void insert(Object obj);
+
+            public void update(Object obj);
+
+            public void delete(Object obj);
+
+            public Object select();
+
+        }
+      here this lacks implementations, and a JPA provider is needed
+
+      if JPA is 'represented' as interface Hibernate 'represents' a class
+      public class Hibernate implements JPA {
+
+          public void insert(Object obj) {
+             //Persistence code
+          }
+
+          public void update(Object obj) {
+             //Persistence code
+
+          }
+
+          public void delete(Object obj) {
+            //Persistence code
+
+          }
+
+          public Object select() {
+              //Persistence code
+          }
+
+          public Object superSelect(){
+              //Persistence Code
+          }
+      }
+
+http://blog-tothought.rhcloud.com//post/2
+
+
+2. Difference between Session.save(Object) and Session.persist(Object)
+
+- persist() - Does not returns generated Id after saving. Its void return type.
+            - session.persist() for a detached object will throw PersistentObjectException
+              as it is not allowed.
+
+- save() - Returns generated Id after saving. Its Serializable return type.
+         - Saves the value to DB immediately and keeps track of the entity
+           until the end of the session
+
+- both persist() and save() :
+         - Session.save() for a detached object will create a new row in the table.
+         - Does not save the changes to the db outside of the transaction.
+         - Assigns the generated id to the entity you are persisting
+
+- better to use persist() than save()
+
+http://stackoverflow.com/questions/5862680/whats-the-advantage-of-persist-vs-save-in-hibernate
+
