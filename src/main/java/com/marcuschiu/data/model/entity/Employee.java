@@ -22,7 +22,7 @@ import java.util.List;
 @Table(name="EMPLOYEE")
 public class Employee {
 
-    /**
+    /*
      * All instance variables are assumed to be @Basic
      * @Basic - is implicitly implied for each variable
      *        - signifies an attribute to be persisted and a standard mapping is used
