@@ -1,0 +1,13 @@
+The naming convention is as follows:
+
+V<VERSION>__<DESCRIPTION>.<FORMAT>
+
+1. <VERSION> is a numeric value that can contain a point (“.”) or an underscore (“_”) for example 3, 3.1, 3_1 are all valid for the version. (Not that if an underscore is used, it would be turned into a dot “.” at runtime by Flyway)
+2. The double underscore, __ is what is used to separate the version number from the description.
+3. <DESCRIPTION> is a short description of what the scripts contained in the file is about. It would be extracted and added to the description column of the schema_version table.
+4. For the <FORMAT>,  you can have either sql or java depending on the method being used to supply the migrations.
+
+So the following are all valid names:
+- V3__description_of_migration.sql
+- V3.1__description_of_migration.java
+- V3_1__description_of_migration.sql

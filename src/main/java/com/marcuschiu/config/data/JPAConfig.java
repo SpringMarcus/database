@@ -1,9 +1,6 @@
 package com.marcuschiu.config.data;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.*;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate3.HibernateExceptionTranslator;
@@ -20,8 +17,9 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = "com.marcuschiu")
+@ComponentScan(basePackages = "com.marcuschiu.data")
 @EnableJpaRepositories(basePackages = "com.marcuschiu.data.repository")
+@Import(PersistenceConfig.class) // needs DataSource from PersistenceConfig
 public class JPAConfig {
 
     private String entityPath = "com.marcuschiu.data.model";

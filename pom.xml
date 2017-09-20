@@ -167,6 +167,7 @@
             </dependency>
 
             <!-- MySQL -->
+            <!-- for FlywayConfig's and PersistenceConfig's String driverClassName = "com.mysql.jdbc.Driver" -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
